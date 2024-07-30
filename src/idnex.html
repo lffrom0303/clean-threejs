@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link type="text/css" rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+<script type="importmap">
+  {
+      "imports": {
+          "three": "../three.module.js",
+          "three/addons/": "../examples/jsm/"
+      }
+  }
+</script>
+<script type="module">
+  import * as THREE from 'three';
+  import {OrbitControls} from 'three/addons/controls/OrbitControls.js'
+  import Stats from 'three/addons/libs/stats.module.js'
+  const scene = new THREE.Scene();
+  const renderer = new THREE.WebGLRenderer();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 3000);
+  camera.position.set(10, 10, 10)
+  camera.lookAt(scene.position)
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  const controls =new OrbitControls(camera, renderer.domElement);
+
+  //批量生成3000个cube
+  for (let i = 0; i < 1000; i++) {
+    const cube = new THREE.Mesh(
+        new THREE.BoxGeometry(0, 1, 1),
+        new THREE.MeshLambertMaterial({color: 0x00ff00})
+    );
+    cube.position.set(Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 10 - 5)
+    scene.add(cube)
+  }
+  document.body.appendChild(renderer.domElement);
+  // renderer.setAnimationLoop( animate );
+  const spotLight = new THREE.SpotLight( 0xffffff, 400 );
+  spotLight.position.set( 10, 10, 10 );
+  spotLight.angle = Math.PI / 6;
+  spotLight.penumbra = 1;
+  spotLight.decay = 2;
+  spotLight.distance = 100;
+  spotLight.castShadow = true;
+  scene.add( spotLight );
+  const axesHelper = new THREE.AxesHelper( 5 );
+  scene.add( axesHelper );
+  const stat = new Stats()
+  function setAllSceneCubeRotate() {
+	  const cubes = scene.children.filter(item => item.type === 'Mesh')
+	  cubes.forEach(item => {
+		  item.rotateY(0.01)
+	  })
+  }
+  document.body.appendChild(stat.domElement)
+  function animate() {
+	  stat.update()
+	  setAllSceneCubeRotate()
+    renderer.render( scene, camera );
+	  requestAnimationFrame( animate)
+  }
+  animate()
+  window.addEventListener('resize',()=>{
+	  camera.aspect = window.innerWidth / window.innerHeight;
+	  camera.updateProjectionMatrix();
+	  renderer.setSize(window.innerWidth, window.innerHeight)
+	  animate()
+  })
+
+</script>
+</body>
+</html>
