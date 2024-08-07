@@ -16,12 +16,11 @@
 		</script>
 		<script type="module">
 			import * as THREE from "three";
-			import { init } from "./js/init.js";
-			const { scene } = init(document.querySelector("#container"), {
+			import scene3d from "./js/init.js";
+			scene3d.init(document.querySelector("#container"), {
 				isStat: true,
 			});
-
-			// let cubeTexture = new THREE.CubeTextureLoader()
+			// scene3d.scene.background = new THREE.CubeTextureLoader()
 			// 	.setPath("./img/")
 			// 	.load([
 			// 		"home.left.jpg",
@@ -31,16 +30,15 @@
 			// 		"home.front.jpg",
 			// 		"home.back.jpg",
 			// 	]);
-			// scene.background = cubeTexture;
 
-			// let mesh = new THREE.Mesh(
-			// 	new THREE.SphereGeometry(100, 100, 100),
-			// 	new THREE.MeshBasicMaterial({
-			// 		map: new THREE.TextureLoader().setPath("./img/").load("img_1.png"),
-			// 		side: THREE.DoubleSide,
-			// 	})
-			// );
-			// scene.add(mesh);
+			let mesh = new THREE.Mesh(
+				new THREE.SphereGeometry(100, 100, 100),
+				new THREE.MeshBasicMaterial({
+					map: new THREE.TextureLoader().setPath("./img/").load("img_1.png"),
+					side: THREE.DoubleSide,
+				})
+			);
+			scene3d.scene.add(mesh);
 
 			// let arr = [
 			// 	"home.left.jpg",
