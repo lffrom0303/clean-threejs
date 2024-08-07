@@ -16,10 +16,11 @@
 		</script>
 		<script type="module">
 			import * as THREE from "three";
-			import scene3d from "./js/init.js";
+			import scene3d from "./js/index.js";
 			scene3d.init(document.querySelector("#container"), {
 				isStat: true,
 			});
+			Object.defineProperty(scene3d, "isDragging", {});
 			// scene3d.scene.background = new THREE.CubeTextureLoader()
 			// 	.setPath("./img/")
 			// 	.load([
@@ -30,7 +31,6 @@
 			// 		"home.front.jpg",
 			// 		"home.back.jpg",
 			// 	]);
-
 			let mesh = new THREE.Mesh(
 				new THREE.SphereGeometry(100, 100, 100),
 				new THREE.MeshBasicMaterial({
