@@ -15,10 +15,10 @@
 			}
 		</script>
 		<script type="module">
-			import * as THREE from 'three';
-			import { init } from './js/init.js';
-			const { scene } = init(document.querySelector('#container'),{
-				isStat:false
+			import * as THREE from "three";
+			import { init } from "./js/init.js";
+			const { scene } = init(document.querySelector("#container"), {
+				isStat: true,
 			});
 			// const bufferGeometry = new THREE.BufferGeometry();
 			// bufferGeometry.setAttribute(
@@ -33,14 +33,14 @@
 			// 	side: THREE.DoubleSide,
 			// }));
 			// scene.add(geometry);
-			const geometry = new THREE.SphereGeometry( 2, 5, 5 );
-			const material = new THREE.MeshBasicMaterial( { color: 0xffff00,wireframe:true } );
-			const sphere = new THREE.Mesh( geometry, material );
-			scene.add( sphere );
-			const light = new THREE.AmbientLight( 0x404040 ); // 柔和的白光
-			scene.add( light );
 
+			// const geometry = new THREE.SphereGeometry( 2, 5, 5 );
+			// const material = new THREE.MeshBasicMaterial( { color: 0xffff00,wireframe:true } );
+			// const sphere = new THREE.Mesh( geometry, material );
+			// scene.add( sphere );
+			// const light = new THREE.AmbientLight( 0x404040 ); // 柔和的白光
+			// scene.add( light );
 		</script>
-	<div id="container"></div>
+		<div id="container"></div>
 	</body>
 </html>
