@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 	<head>
 		<meta charset="UTF-8" />
 		<title>Title</title>
 		<link type="text/css" rel="stylesheet" href="./css/index.css" />
+		<script src="https://d3js.org/d3.v5.min.js"></script>
 	</head>
 	<body>
 		<script type="importmap">
@@ -16,9 +17,10 @@
 		</script>
 		<script type="module">
 			import * as THREE from "three";
-			import scene3d from "./js/init.js";
+			import scene3d from "./js/index.js";
 			scene3d.init(document.querySelector("#container"), {
 				isStat: true,
+				isAxesHelper: true,
 			});
 		</script>
 		<div id="container"></div>
